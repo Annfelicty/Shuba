@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shuba Morning Show</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <audio id="bg-music" autoplay loop>
+    <source src="hey-ya.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <img src="shuba-ezgif.com-speed.gif" alt="Shuba Duck" class="duck" />
+    <h1 class="headline">Good morning, look at this dance to start your day 💃🦆☀️</h1>
+    <button id="snooze-btn">Snooze 💤</button>
+    <p class="snooze-msg">Okay fine... 5 more minutes 😴</p>
+  </div>
+
+  <script>
+    const duck = document.querySelector('.duck');
+    const headline = document.querySelector('.headline');
+    const snoozeBtn = document.getElementById('snooze-btn');
+    const snoozeMsg = document.querySelector('.snooze-msg');
+    const music = document.getElementById('bg-music');
+
+    let position = -150;
+    let paused = false;
+    const revealAt = window.innerWidth / 3;
+
+    function moveDuck() {
+      if (!paused) {
+        position += 0.5; // slow & graceful
+
+        duck.style.left = position + 'px';
+
+        if (position > revealAt) {
+          headline.classList.add('reveal');
+        }
+
+        if (position > window.innerWidth + 150) {
+          position = -150;
+          duck.classList.toggle('flipped'); // flip direction
+          headline.classList.remove('reveal');
+        }
+
+        requestAnimationFrame(moveDuck);
+      }
+    }
+
+    moveDuck();
+
+    snoozeBtn.addEventListener('click', () => {
+      paused = true;
+      music.pause();
+      snoozeMsg.style.opacity = '1';
+      snoozeBtn.style.display = 'none';
+
+      setTimeout(() => {
+        paused = false;
+        music.play();
+        snoozeMsg.style.opacity = '0';
+        snoozeBtn.style.display = 'inline-block';
+        moveDuck(); // resume animation
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

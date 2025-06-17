@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f4f3f0, #e8e8e7);
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.duck {
+  position: absolute;
+  bottom: 30px;
+  height: 150px;
+  left: 0;
+  z-index: 10;
+  transition: left 0.1s linear;
+}
+
+.duck.flipped {
+  transform: scaleX(-1);
+}
+
+.headline {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff69b4, #ffcc00, #00ffff, #a020f0, #ff69b4);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-top: 40px;
+  animation: slideText 2s ease-in-out forwards;
+
+.headline.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#snooze-btn {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background-color: #0b3c84;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+  z-index: 99;
+  transition: transform 0.2s ease;
+}
+
+#snooze-btn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.snooze-msg {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
